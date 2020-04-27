@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/blaster_02.ogg-5ba31d1e2982197ba181cb04c8dac752.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/blaster_02.ogg"
+dest_files=[ "res://.import/blaster_02.ogg-5ba31d1e2982197ba181cb04c8dac752.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

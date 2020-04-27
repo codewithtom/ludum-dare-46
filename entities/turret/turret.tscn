@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/sounds/blaster_03.ogg" type="AudioStream" id=1]
+[ext_resource path="res://entities/turret/turret.gd" type="Script" id=2]
+[ext_resource path="res://assets/materials/palette_material.tres" type="Material" id=3]
+[ext_resource path="res://assets/meshes/TurretBody.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/meshes/TurretHead.mesh" type="ArrayMesh" id=5]
+
+[sub_resource type="SphereShape" id=1]
+radius = 40.0
+
+[sub_resource type="PlaneMesh" id=2]
+
+[node name="Turret" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="TurretBody" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.70326, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="TurretHead" type="KinematicBody" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.70326, 0 )
+
+[node name="TurretHead2" type="MeshInstance" parent="TurretHead"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.0210764, 0 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -20.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
